@@ -1,0 +1,121 @@
+1. Not implemented support for enum & set data types.
+2. Tested on structure specified in dump.sql in next way:
+
+./generator.php 
+Usage:
+generator.php -c=command/subcommand options
+Commands and corresponding subcommands:
+help
+show
+        tables
+        table
+fill
+        table
+
+Options:
+-u username
+-p password
+-h host
+-n database name
+-t table name
+-s show generated data
+-r rows count
+
+###############################################################################
+
+./generator.php -cshow/tables -uroot -proot -hlocalhost -ntest
+one
+three
+two
+
+###############################################################################
+
+./generator.php -cshow/table -uroot -proot -hlocalhost -ntest -tone
+|------------------------------------------------------------------|
+| Field | Type             | Null | Key | Default | Extra          | 
+|------------------------------------------------------------------|
+| id    | int(10) unsigned | NO   | PRI |         | auto_increment | 
+| a     | int(11)          | YES  | MUL |         |                | 
+| b     | varchar(100)     | YES  |     |         |                | 
+| c     | datetime         | YES  |     |         |                | 
+| d     | int(11)          | YES  | UNI |         |                | 
+|------------------------------------------------------------------|
+Rows count: 0
+
+###############################################################################
+
+time ./generator.php -cfill/table -uroot -proot -hlocalhost -ntest -tone -r1000
+Generated 1000 rows.
+
+real    0m34.669s
+user    0m1.794s
+sys     0m0.094s
+
+###############################################################################
+
+time ./generator.php -cfill/table -uroot -proot -hlocalhost -ntest -tone -r10 -s
+Generated 10 rows.
+|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| id   | a        | b                                                                                                 | c                  | d        | 
+|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| 4001 | 31347151 | 0Nf0KXZjBSVm!W,r4jOMOG!zIT5Sgvaw4Sv
+LABpoJ5xfR6T7fBZ                                              | 2010-5-21 0:55:11  | 78163    | 
+| 4002 | 4709422  | lX9RDxGzfl9JQr0Dj1Zl,!XeaKI2Y5g  KodvyQAiuCaHpQvgQE9z 2vDtSayA,u!meDkPC                           | 2003-2-4 5:47:16   | 45880    | 
+| 4003 | -24      | 7Un,kvqk.BLyeTjX6RCLP!TNPUEYnx2u6JuMIrm71hiw9A ri2N16B                                            | 2004-4-21 21:38:42 | -8573157 | 
+| 4004 | 82758774 | Q0DgthrybfpG,FdQ2                                                                                 | 1997-6-4 10:37:55  | -70658   | 
+| 4005 | 6889645  | bJ                                                                                                | 1996-8-22 3:40:57  | -78      | 
+| 4006 | -825     | UqJvBh.1nizLkAo7ichUGn2 dj0T5Crqu!QcEO7                                                           | 2018-2-13 11:33:58 | 259858   | 
+| 4007 | -21019   | hv6Bo
+kw 7Zk zeLmaVIi7s!j!U                                                                       | 2005-1-30 5:38:34  | -76      | 
+| 4008 | 2156577  | Hz0NAcqOqnRqR,!DblgUvjsu1BKmqMBnn8T.MZfxFhFAHEghsKUNSZNHG. B                                      | 2007-3-9 10:56:59  | 53799392 | 
+| 4009 | 5        | pAdMn5
+5l8B7o0NW!JBS5Bgr4gsV87KMIf,elp6cx9Q1DXeLaXeL,nUX3O!j,3P04j.NCVc nzqP8rRyYjaKtQ.03NlYqn0Ra | 2002-2-21 1:34:0   | -8428    | 
+| 4010 | 1788426  | oI5572X7nDRLc56DChz9wlOGjahmZWhTGTnT1ap,SwOjKbSjNDgcuRfUBHqYSX9SpKCqUrwg,cxaIPnUjFaAGGscSfUp      | 1986-11-29 6:46:47 | -166     | 
+|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+
+real    0m0.556s
+user    0m0.089s
+sys     0m0.023s
+
+###############################################################################
+
+time ./generator.php -cfill/table -uroot -proot -hlocalhost -ntest -tone -r1000
+Generated 1000 rows.
+
+real    0m38.354s
+user    0m5.399s
+sys     0m0.081s
+
+###############################################################################
+
+./generator.php -cshow/table -uroot -proot -hlocalhost -ntest -tone
+|------------------------------------------------------------------|
+| Field | Type             | Null | Key | Default | Extra          | 
+|------------------------------------------------------------------|
+| id    | int(10) unsigned | NO   | PRI |         | auto_increment | 
+| a     | int(11)          | YES  | MUL |         |                | 
+| b     | varchar(100)     | YES  |     |         |                | 
+| c     | datetime         | YES  |     |         |                | 
+| d     | int(11)          | YES  | UNI |         |                | 
+|------------------------------------------------------------------|
+Rows count: 2010
+
+###############################################################################
+
+time ./generator.php -cfill/table -uroot -proot -hlocalhost -ntest -ttwo -r2000
+Generated 2000 rows.
+
+real    1m17.984s
+user    0m1.658s
+sys     0m0.412s
+
+###############################################################################
+
+time ./generator.php -cfill/table -uroot -proot -hlocalhost -ntest -tthree -r1000
+Generated 1000 rows.
+
+real    0m39.264s
+user    0m2.684s
+sys     0m0.080s
+
+###############################################################################
